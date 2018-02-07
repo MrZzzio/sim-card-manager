@@ -6,19 +6,23 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
 import { CardDetailComponent } from './card-detail/card-detail.component';
+import { CardService } from './card.service';
+import { MessageComponent } from './message/message.component';
+import { MessageService } from './message.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CardComponent,
-    CardDetailComponent
+    CardDetailComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CardService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
