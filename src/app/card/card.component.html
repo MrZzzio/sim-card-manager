@@ -1,10 +1,24 @@
-<h2>{{ card.name | uppercase }} Details</h2>
-<div>
-  <span>id: </span>
-  {{ card.id }}
-</div>
-<div>
-  <label>name:
-    <input [(ngModel)]="card.name" placeholder="name">
+<ul class="cards">
+  <li *ngFor="let card of cards"
+  [class.selected]="card === selectedCard"
+  (click)="onSelect(card)">
+    <span class="operator">{{ card.operator }}</span>{{ card.number }}
+  </li>
+</ul>
+<div *ngIf="selectedCard">
+  <h2>{{ selectedCard.number }} Details:</h2>
+  <div>
+    <span>id: </span>{{ selectedCard.id }}
+  </div>
+  <div>
+    <span>number: </span>{{ selectedCard.number }}
+  </div>
+  <div>
+    <label>operator:
+    <input [(ngModel)]="selectedCard.operator" placeholder="operator">
   </label>
+  </div>
+  <div>
+    <span>balance: </span>{{ selectedCard.balance }}
+  </div>
 </div>

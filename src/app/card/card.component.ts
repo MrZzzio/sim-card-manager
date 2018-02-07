@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from '../card';
+import { CARDS } from '../mock-card';
 
 @Component({
   selector: 'app-card',
@@ -8,14 +9,17 @@ import { Card } from '../card';
 })
 export class CardComponent implements OnInit {
 
+  cards = CARDS;
+
+  selectedCard: Card;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  card: Card = {
-    id: 1,
-    name: '+71234567890'
-  };
+  onSelect(card: Card): void {
+    this.selectedCard = card;
+  }
 
 }

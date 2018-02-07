@@ -1,4 +1,6 @@
 export class Card {
   id: number;
-  name: string;
+  number: string;
+  operator: string;
+  balance: number;
 }
