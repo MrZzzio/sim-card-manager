@@ -1,9 +1,7 @@
 <ul class="cards">
-  <li *ngFor="let card of cards"
-  [class.selected]="card === selectedCard"
-  (click)="onSelect(card)">
-    <span class="operator">{{ card.operator }}</span>{{ card.number }}
+  <li *ngFor="let card of cards">
+    <a routerLink="/detail/{{card.id}}">
+      <span class="operator">{{ card.operator }}</span>{{ card.number }}
+    </a>
   </li>
 </ul>
-
-<app-card-detail [card]="selectedCard"></app-card-detail>

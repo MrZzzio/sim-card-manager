@@ -3,13 +3,12 @@ import { Card } from '../card';
 import { CardService } from '../card.service';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: [ './dashboard.component.css' ]
 })
-export class CardComponent implements OnInit {
-
-  cards: Card[];
+export class DashboardComponent implements OnInit {
+  cards: Card[] = [];
 
   constructor(private cardService: CardService) { }
 
@@ -19,7 +18,6 @@ export class CardComponent implements OnInit {
 
   getCards(): void {
     this.cardService.getCards()
-      .subscribe(cards => this.cards = cards);
+      .subscribe(cards => this.cards = cards.slice(1, 5));
   }
-
 }
