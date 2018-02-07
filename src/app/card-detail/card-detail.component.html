@@ -1,0 +1,17 @@
+<div *ngIf="card">
+  <h2>{{ card.number }} Details:</h2>
+  <div>
+    <span>id: </span>{{ card.id }}
+  </div>
+  <div>
+    <span>number: </span>{{ card.number }}
+  </div>
+  <div>
+    <label>operator:
+    <input [(ngModel)]="card.operator" placeholder="operator">
+  </label>
+  </div>
+  <div>
+    <span>balance: </span>{{ card.balance }}
+  </div>
+</div>

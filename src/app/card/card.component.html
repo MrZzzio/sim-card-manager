@@ -5,20 +5,5 @@
     <span class="operator">{{ card.operator }}</span>{{ card.number }}
   </li>
 </ul>
-<div *ngIf="selectedCard">
-  <h2>{{ selectedCard.number }} Details:</h2>
-  <div>
-    <span>id: </span>{{ selectedCard.id }}
-  </div>
-  <div>
-    <span>number: </span>{{ selectedCard.number }}
-  </div>
-  <div>
-    <label>operator:
-    <input [(ngModel)]="selectedCard.operator" placeholder="operator">
-  </label>
-  </div>
-  <div>
-    <span>balance: </span>{{ selectedCard.balance }}
-  </div>
-</div>
+
+<app-card-detail [card]="selectedCard"></app-card-detail>
