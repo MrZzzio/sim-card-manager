@@ -22,4 +22,20 @@ export class CardComponent implements OnInit {
       .subscribe(cards => this.cards = cards);
   }
 
+  add(number: string): void {
+    number = number.trim();
+    if (!number) {
+      return;
+    }
+    this.cardService.addCard({number} as Card)
+      .subscribe(card => {
+        this.cards.push(card);
+      });
+  }
+
+  delete(card: Card): void {
+    this.cards = this.cards.filter(c => c !== card);
+    this.cardService.deleteCard(card).subscribe();
+  }
+
 }
