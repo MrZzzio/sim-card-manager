@@ -19,6 +19,6 @@ export class CardService {
 
   getCard(id: number): Observable<Card> {
     this.messageService.add(`CardService: fetched card id=${id}`);
-    return of(CARDS.find(card => card.id === id);
+    return of(CARDS.find(card => card.id === id));
   }
 }
