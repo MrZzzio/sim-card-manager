@@ -15,6 +15,7 @@ import { MessageService } from './message.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CardSearchComponent } from './card-search/card-search.component';
+import { CardNewComponent } from './card-new/card-new.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CardSearchComponent } from './card-search/card-search.component';
     CardDetailComponent,
     MessageComponent,
     DashboardComponent,
-    CardSearchComponent
+    CardSearchComponent,
+    CardNewComponent
   ],
   imports: [
     BrowserModule,

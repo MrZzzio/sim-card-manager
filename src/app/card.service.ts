@@ -6,7 +6,6 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Card } from './card';
-// import { CARDS } from './mock-card';
 import { MessageService } from './message.service';
 
 const httpOptions = {
@@ -30,7 +29,6 @@ export class CardService {
 
   getCard(id: number): Observable<Card> {
     this.messageService.add(`CardService: fetched card id=${id}`);
-    // return of(CARDS.find(card => card.id === id));
     return this.http.get<Card[]>(this.cardsUrl + '/' + id);
   }
 

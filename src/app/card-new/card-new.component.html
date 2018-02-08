@@ -1,0 +1,21 @@
+<h2>Add new Sim-card</h2>
+
+<div>
+  <label class="newCard">Phone number:
+    <input #phoneNumber />
+  </label>
+  <label class="newCard">Operator:
+    <input #operator />
+  </label>
+  <label class="newCard">Balance:
+    <input #balance />
+  </label>
+
+
+
+  <button (click)="add(phoneNumber.value, operator.value, balance.value)">
+    add
+  </button>
+</div>
+
+<button (click)="goBack()">go back</button>

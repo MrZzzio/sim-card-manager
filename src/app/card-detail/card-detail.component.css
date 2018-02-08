@@ -1,16 +1,17 @@
 /* HeroDetailComponent's private CSS styles */
+input {
+  font-size: 16px;
+  padding-left: 10px;
+}
+
 label {
   display: inline-block;
-  width: 3em;
-  margin: .5em 0;
+  width: 48px;
+  margin: 10px 0;
   color: #607D8B;
   font-weight: bold;
 }
-input {
-  height: 2em;
-  font-size: 1em;
-  padding-left: .4em;
-}
+
 button {
   margin-top: 20px;
   font-family: Arial;

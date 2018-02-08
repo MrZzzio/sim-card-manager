@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
     this.getCards();
   }
 
+  //TODO filter by largest balance
   getCards(): void {
     this.cardService.getCards()
       .subscribe(cards => this.cards = cards.slice(1, 5));
