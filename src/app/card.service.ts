@@ -66,6 +66,10 @@ export class CardService {
     );
   }
 
+  getOperator(): string[] {
+    return ["MTS", "BEELINE", "MEGAFON", "TELE2"];
+  }
+
   private log(message: string) {
     this.messageService.add('CardService: ' + message);
   }

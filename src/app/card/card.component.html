@@ -3,7 +3,12 @@
 <ul class="cards">
   <li *ngFor="let card of cards">
     <a routerLink="/detail/{{card.id}}">
-      <span class="operator">{{ card.operator }}</span>{{ card.number }}
+      <span class="operator" [ngSwitch]="true">
+        <img *ngSwitchCase="card.operator === 'MTS'" class="icon" src="../assets/icons/mts-icon.jpg" alt="img">
+        <img *ngSwitchCase="card.operator === 'MEGAFON'" class="icon" src="../assets/icons/megafon-icon.jpg" alt="img">
+        <img *ngSwitchCase="card.operator === 'BEELINE'" class="icon" src="../assets/icons/beeline-icon.jpg" alt="img">
+        <img *ngSwitchCase="card.operator === 'TELE2'" class="icon" src="../assets/icons/tele2-icon.png" alt="img">
+      </span>{{ card.number }}
     </a>
     <button class="delete" title="delete card"
     (click)="delete(card)">x</button>

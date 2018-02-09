@@ -5,13 +5,15 @@
     <input #phoneNumber />
   </label>
   <label class="newCard">Operator:
-    <input #operator />
+    <select #operator>
+      <option *ngFor="let op of getOperator()">
+        {{op}}
+      </option>
+    </select>
   </label>
   <label class="newCard">Balance:
-    <input #balance />
+    <input type="number" #balance />
   </label>
-
-
 
   <button (click)="add(phoneNumber.value, operator.value, balance.value)">
     add

@@ -40,7 +40,7 @@ export class CardDetailComponent implements OnInit {
   }
 
   getOperator(): string[] {
-    return ["MTS", "BEELINE", "MEGAFON", "TELE2"];
+    return this.cardService.getOperator();
   }
 
 }

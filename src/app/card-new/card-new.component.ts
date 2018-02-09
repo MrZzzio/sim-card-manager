@@ -29,4 +29,8 @@ export class CardNewComponent implements OnInit {
       .subscribe(() => this.goBack());
   }
 
+  getOperator(): string[] {
+    return this.cardService.getOperator();
+  }
+
 }
