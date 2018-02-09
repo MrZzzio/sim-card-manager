@@ -16,9 +16,12 @@ export class DashboardComponent implements OnInit {
     this.getCards();
   }
 
-  //TODO filter by largest balance
   getCards(): void {
     this.cardService.getCards()
-      .subscribe(cards => this.cards = cards.slice(1, 5));
+      .subscribe(cards => this.cards = cards.sort(
+        function (a, b) {
+          return b.balance - a.balance;
+        }
+      ).slice(0, 4));
   }
 }

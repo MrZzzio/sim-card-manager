@@ -39,4 +39,8 @@ export class CardDetailComponent implements OnInit {
       .subscribe(() => this.goBack());
   }
 
+  getOperator(): string[] {
+    return ["MTS", "BEELINE", "MEGAFON", "TELE2"];
+  }
+
 }
