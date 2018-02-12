@@ -5,6 +5,7 @@
 /dist-server
 /tmp
 /out-tsc
+/server/sim-card-manager/out/
 
 # dependencies
 /node_modules
