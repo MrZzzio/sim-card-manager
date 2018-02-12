@@ -15,7 +15,8 @@ const httpOptions = {
 @Injectable()
 export class CardService {
 
-  private cardsUrl = 'api/cards'; //URL to web api
+  // private cardsUrl = 'api/cards'; //URL to web api
+  private cardsUrl = "http://localhost:8080/api/cards";
 
   constructor(private messageService: MessageService,
               private http: HttpClient) { }
@@ -35,14 +36,13 @@ export class CardService {
   }
 
   updateCard(card: Card): Observable<any> {
-
     return this.http.put(this.cardsUrl, card, httpOptions).pipe(
       tap(_ => this.log(`updated card id=${card.id}`)),
       catchError(this.handleError<any>('updateCard'))
     );
   }
 
-  addCard(card: Card): Observable<Card> {
+  addCard(card: Card): Observable<Card[]> {
     return this.http.post<Card>(this.cardsUrl, card, httpOptions).pipe(
       tap((card: Card) => this.log(`added card id=${card.id}`)),
       catchError(this.handleError<Card>('addCard'))
@@ -62,7 +62,8 @@ export class CardService {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Card[]>(`api/cards/?number=${term}`).pipe(
+    return this.http.get<Card[]>(this.cardsUrl +
+      `/search/?number=${encodeURIComponent(term)}`).pipe(
       tap(_ => this.log(`found cards matching "${term}"`)),
       catchError(this.handleError<Card[]>('searchCards', []))
     );

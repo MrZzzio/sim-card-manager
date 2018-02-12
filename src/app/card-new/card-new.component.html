@@ -15,9 +15,9 @@
     <input type="number" #balance />
   </label>
 
+  <button (click)="goBack()">go back</button>
+  
   <button (click)="add(phoneNumber.value, operator.value, balance.value)">
     add
   </button>
 </div>
-
-<button (click)="goBack()">go back</button>

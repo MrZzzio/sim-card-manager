@@ -38,7 +38,7 @@ public class SimCardManagerApplication {
 
 	private Card createCard() {
         Card card = new Card();
-        card.setPhoneNumber(Card.randomPhoneNumber());
+        card.setNumber(Card.randomPhoneNumber());
         card.setOperator(Card.randomOperator());
         card.setBalance(Card.randomBalance());
         return card;

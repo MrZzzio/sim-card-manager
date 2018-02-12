@@ -16,7 +16,7 @@ public class Card {
   private Long id;
 
   @Column(nullable = false)
-  private String phoneNumber;
+  private String number;
 
   @Enumerated(value = EnumType.STRING)
   private Operator operator;
@@ -32,12 +32,12 @@ public class Card {
     this.id = id;
   }
 
-  public String getPhoneNumber() {
-    return phoneNumber;
+  public String getNumber() {
+    return number;
   }
 
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+  public void setNumber(String number) {
+    this.number = number;
   }
 
   public Operator getOperator() {

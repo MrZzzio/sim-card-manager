@@ -1,7 +1,7 @@
 <h3>Top Sim-cards with largest balance</h3>
 
 <div class="grid grid-pad">
-  <a *ngFor="let card of cards" class="col-1-4" routerLink="/detail/{{card.id}}">
+  <a *ngFor="let card of cards" class="col-1-4" routerLink="/api/cards/{{card.id}}">
     <div class="module card">
       <h4>{{card.number}}</h4>
       balance: {{card.balance}}
