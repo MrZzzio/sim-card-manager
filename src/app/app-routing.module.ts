@@ -11,7 +11,7 @@ const pref = "api/";
 const routes: Routes = [
   { path: pref + 'cards', component: CardComponent },
   { path: pref + 'dashboard', component: DashboardComponent },
-  { path: pref + '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: pref + 'dashboard', pathMatch: 'full' },
   { path: pref + 'cards/:id', component: CardDetailComponent },
   { path: pref + 'new', component: CardNewComponent }
 ]
