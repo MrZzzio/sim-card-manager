@@ -23,15 +23,15 @@ export class CardService {
 
   getCards(): Observable<Card[]> {
     return this.http.get<Card[]>(this.cardsUrl).pipe(
-      tap(cards => this.log('fetching cards')),
+      tap(_ => this.log('fetching cards')),
       catchError(this.handleError('getCards', []))
     );
   }
 
   getCard(id: number): Observable<Card> {
-    return this.http.get<Card[]>(this.cardsUrl + '/' + id).pipe(
-      tap(cards => this.log(`fetching card id=${id}`)),
-      catchError(this.handleError(`getCard with id=${id}`, []))
+    return this.http.get<Card>(this.cardsUrl + '/' + id).pipe(
+      tap(_ => this.log(`fetching card id=${id}`)),
+      catchError(this.handleError<Card>(`getCard with id=${id}`))
     );
   }
 
@@ -42,9 +42,9 @@ export class CardService {
     );
   }
 
-  addCard(card: Card): Observable<Card[]> {
+  addCard(card: Card): Observable<Card> {
     return this.http.post<Card>(this.cardsUrl, card, httpOptions).pipe(
-      tap((card: Card) => this.log(`added card id=${card.id}`)),
+      tap((_: Card) => this.log(`added card id=${card.id}`)),
       catchError(this.handleError<Card>('addCard'))
     );
   }

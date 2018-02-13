@@ -2,7 +2,7 @@
 
 <div>
   <label class="newCard">Phone number:
-    <input #phoneNumber />
+    <input #phoneNumber maxlength="11" />
   </label>
   <label class="newCard">Operator:
     <select #operator>
@@ -16,7 +16,7 @@
   </label>
 
   <button (click)="goBack()">go back</button>
-  
+
   <button (click)="add(phoneNumber.value, operator.value, balance.value)">
     add
   </button>
