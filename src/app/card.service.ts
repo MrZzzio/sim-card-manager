@@ -16,7 +16,7 @@ const httpOptions = {
 export class CardService {
 
   // private cardsUrl = 'api/cards'; //URL to web api
-  private cardsUrl = "http://localhost:8080/api/cards";
+  private cardsUrl = "http://localhost:8081/api/cards";
 
   constructor(private messageService: MessageService,
               private http: HttpClient) { }

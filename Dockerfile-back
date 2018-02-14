@@ -1,0 +1,9 @@
+FROM openjdk:8-jdk-alpine
+EXPOSE 8080
+RUN apk add --no-cache bash
+RUN mkdir /app
+WORKDIR /app
+ADD server .
+WORKDIR ./sim-card-manager
+RUN ./gradlew build --refresh-dependencies
+ENTRYPOINT ./gradlew bootRun

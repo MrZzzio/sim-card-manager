@@ -1,0 +1,14 @@
+FROM node:alpine
+EXPOSE 4200
+RUN apk update
+RUN apk add --no-cache bash
+RUN apk add python2
+RUN mkdir /simcardmanager
+WORKDIR /simcardmanager
+ADD src ./src
+ADD e2e ./e2e
+ADD *.js ./
+ADD *.json ./
+RUN npm install @angular/cli
+RUN npm install
+ENTRYPOINT /simcardmanager/node_modules/@angular/cli/bin/ng serve -H 0.0.0.0

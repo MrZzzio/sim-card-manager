@@ -1,0 +1,20 @@
+version: "2"
+services:
+  front:
+    build:
+      context: .
+      dockerfile: Dockerfile-front
+    container_name: simcard-manager-front
+    ports:
+      - 4201:4200
+    links:
+      - back
+    depends_on:
+      - back
+  back:
+    build:
+      context: .
+      dockerfile: Dockerfile-back
+    container_name: simcard-manager-back
+    ports:
+      - 8081:8080
