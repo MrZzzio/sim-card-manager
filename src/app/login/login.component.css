@@ -1,0 +1,39 @@
+.label {
+  display: block;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 20px;
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer; cursor: hand;
+}
+
+input {
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+label {
+  display: inline-block;
+  width: 48px;
+  margin: 10px 0;
+  color: #607D8B;
+  font-weight: bold;
+}
+
+select {
+  height: 24px;
+  width: 206px;
+  font-size: 16px;
+}

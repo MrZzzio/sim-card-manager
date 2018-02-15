@@ -11,10 +11,12 @@ import { CardComponent } from './card/card.component';
 import { CardDetailComponent } from './card-detail/card-detail.component';
 import { CardService } from './card.service';
 import { MessageService } from './message.service';
+import { UserService } from './user.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CardSearchComponent } from './card-search/card-search.component';
 import { CardNewComponent } from './card-new/card-new.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { CardNewComponent } from './card-new/card-new.component';
     CardDetailComponent,
     DashboardComponent,
     CardSearchComponent,
-    CardNewComponent
+    CardNewComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,7 @@ import { CardNewComponent } from './card-new/card-new.component';
     //   InMemoryDataService, { dataEncapsulation: false }
     // )
   ],
-  providers: [CardService, MessageService],
+  providers: [CardService, MessageService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
