@@ -1,7 +1,10 @@
 package com.artezio.simcardmanager.api;
 
+import com.artezio.simcardmanager.common.NotAuthorizedException;
 import com.artezio.simcardmanager.model.Card;
+import com.artezio.simcardmanager.model.User;
 import com.artezio.simcardmanager.repository.CardRepository;
+import com.artezio.simcardmanager.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,48 +21,61 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*",
-  methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT })
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 @RequestMapping("/api")
 public class Controller {
 
-  private final CardRepository cardRepository;
+    private final CardRepository cardRepository;
 
-  public Controller(CardRepository cardRepository) {
-    this.cardRepository = cardRepository;
-  }
+    private final UserRepository userRepository;
 
-  @GetMapping("/cards")
-  public Iterable<Card> getAll() {
-    Iterable<Card> all = this.cardRepository.findAll();
-    return all;
-  }
+    public Controller(CardRepository cardRepository, UserRepository userRepository) {
+        this.cardRepository = cardRepository;
+        this.userRepository = userRepository;
+    }
 
-  @GetMapping("/cards/{id}")
-  public Card getOne(@PathVariable(value = "id") Long id) {
-    Card one = this.cardRepository.findOne(id);
-    return one;
-  }
+    @GetMapping("/cards")
+    public Iterable<Card> getAll() {
+        Iterable<Card> all = this.cardRepository.findAll();
+        return all;
+    }
 
-  @DeleteMapping("/cards/{id}")
-  public void deleteOne(@PathVariable(value = "id") Long id) {
-    this.cardRepository.delete(id);
-  }
+    @GetMapping("/cards/{id}")
+    public Card getOne(@PathVariable(value = "id") Long id) {
+        Card one = this.cardRepository.findOne(id);
+        return one;
+    }
 
-  @PostMapping("/cards")
-  @ResponseStatus(HttpStatus.CREATED)
-  public Card createOne(@RequestBody Card card) {
-    return this.cardRepository.save(card);
-  }
+    @DeleteMapping("/cards/{id}")
+    public void deleteOne(@PathVariable(value = "id") Long id) {
+        this.cardRepository.delete(id);
+    }
 
-  @PutMapping("/cards")
-  public Card updateOne(@RequestBody Card card) {
-    return this.cardRepository.save(card);
-  }
+    @PostMapping("/cards")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Card createOne(@RequestBody Card card) {
+        return this.cardRepository.save(card);
+    }
 
-  @GetMapping("/cards/search")
-  public Iterable<Card> search(@RequestParam(value = "number") String number) {
-    Iterable<Card> byNumberLike = this.cardRepository.findByNumberContaining(number);
-    return byNumberLike;
-  }
+    @PutMapping("/cards")
+    public Card updateOne(@RequestBody Card card) {
+        return this.cardRepository.save(card);
+    }
+
+    @GetMapping("/cards/search")
+    public Iterable<Card> search(@RequestParam(value = "number") String number) {
+        Iterable<Card> byNumberLike = this.cardRepository.findByNumberContaining(number);
+        return byNumberLike;
+    }
+
+    @PostMapping("/login")
+    public User login(@RequestBody User user) {
+        User byLogin = this.userRepository.findByLogin(user.getLogin());
+        if (byLogin != null && user.getPassword().equals(byLogin.getPassword())) {
+            return byLogin;
+        } else {
+            throw new NotAuthorizedException();
+        }
+    }
 
 }

@@ -1,7 +1,9 @@
 package com.artezio.simcardmanager;
 
 import com.artezio.simcardmanager.model.Card;
+import com.artezio.simcardmanager.model.User;
 import com.artezio.simcardmanager.repository.CardRepository;
+import com.artezio.simcardmanager.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,8 +16,11 @@ public class SimCardManagerApplication {
 
     private final CardRepository cardRepository;
 
-    public SimCardManagerApplication(CardRepository cardRepository) {
+    private final UserRepository userRepository;
+
+    public SimCardManagerApplication(CardRepository cardRepository, UserRepository userRepository) {
         this.cardRepository = cardRepository;
+        this.userRepository = userRepository;
     }
 
 	public static void main(String[] args) {
@@ -34,6 +39,7 @@ public class SimCardManagerApplication {
                     Card card = this.createCard();
                     this.cardRepository.save(card);
                 });
+        this.createUser("login", "123");
 	}
 
 	private Card createCard() {
@@ -42,5 +48,12 @@ public class SimCardManagerApplication {
         card.setOperator(Card.randomOperator());
         card.setBalance(Card.randomBalance());
         return card;
+    }
+
+    private void createUser(String login, String password) {
+        User user = new User();
+        user.setLogin(login);
+        user.setPassword(password);
+        this.userRepository.save(user);
     }
 }
