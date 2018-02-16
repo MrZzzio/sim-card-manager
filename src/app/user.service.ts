@@ -10,12 +10,17 @@ import { User } from './user';
 @Injectable()
 export class UserService {
 
-  private userUrl = "http://localhost:8081/api/login";
+  private loginUrl = "http://localhost:8081/api/login";
+  private registerUrl = "http://localhost:8081/api/register";
 
   constructor(private http: HttpClient) { }
 
   login(user: User): Observable<User> {
-    return this.http.post<User>(this.userUrl, user);
+    return this.http.post<User>(this.loginUrl, user);
+  }
+
+  register(user: User): Observable<User> {
+    return this.http.post<User>(this.registerUrl, user);
   }
 
 }

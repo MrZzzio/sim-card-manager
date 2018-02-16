@@ -19,6 +19,7 @@ import { CardNewComponent } from './card-new/card-new.component';
 import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginInterceptor } from './login/login-interceptor';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { LoginInterceptor } from './login/login-interceptor';
     DashboardComponent,
     CardSearchComponent,
     CardNewComponent,
-    LoginComponent 
+    LoginComponent,
+    RegisterComponent 
   ],
   imports: [
     BrowserModule,

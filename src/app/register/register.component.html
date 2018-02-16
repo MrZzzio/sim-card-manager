@@ -1,0 +1,19 @@
+<h2>Login or register</h2>
+
+<div>
+  <label class="label">Login:
+    <input #log />
+  </label>
+
+  <label class="label">Password:
+    <input #password type="password" />
+  </label>
+
+  <label class="label">Confirm:
+    <input type="password" />
+  </label>
+
+  <button (click)="register(log.value, password.value)">Register</button>
+
+  <button (click)="goLogin()">Cancel</button>
+</div>

@@ -21,6 +21,10 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('');
   }
 
+  goRegister(): void {
+    this.router.navigateByUrl('/api/register');
+  }
+
   login(login: string, password: string): void {
     this.userService.login({login, password} as User)
     .subscribe(() => this.goMain());
