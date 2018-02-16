@@ -17,6 +17,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CardSearchComponent } from './card-search/card-search.component';
 import { CardNewComponent } from './card-new/card-new.component';
 import { LoginComponent } from './login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoginInterceptor } from './login/login-interceptor';
 
 
 @NgModule({
@@ -27,7 +29,7 @@ import { LoginComponent } from './login/login.component';
     DashboardComponent,
     CardSearchComponent,
     CardNewComponent,
-    LoginComponent
+    LoginComponent 
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,15 @@ import { LoginComponent } from './login/login.component';
     //   InMemoryDataService, { dataEncapsulation: false }
     // )
   ],
-  providers: [CardService, MessageService, UserService],
+  providers:
+    [CardService,
+      MessageService,
+      UserService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: LoginInterceptor,
+        multi: true
+      }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

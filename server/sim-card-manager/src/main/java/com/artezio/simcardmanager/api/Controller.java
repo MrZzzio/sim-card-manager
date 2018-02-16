@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 @CrossOrigin(origins = "*",
-        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT},
+        exposedHeaders = "x-auth-token")
 @RequestMapping("/api")
 public class Controller {
 
@@ -69,13 +72,19 @@ public class Controller {
     }
 
     @PostMapping("/login")
-    public User login(@RequestBody User user) {
+    public User login(@RequestBody User user,
+                      HttpServletResponse response) {
         User byLogin = this.userRepository.findByLogin(user.getLogin());
         if (byLogin != null && user.getPassword().equals(byLogin.getPassword())) {
+            response.setHeader("x-auth-token", this.generateSecureJwt());
             return byLogin;
         } else {
             throw new NotAuthorizedException();
         }
+    }
+
+    private String generateSecureJwt() {
+        return "jwt-token";
     }
 
 }

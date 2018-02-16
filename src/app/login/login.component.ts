@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   goMain(): void {
-    this.router.navigateByUrl("");
+    this.router.navigateByUrl('');
   }
 
   login(login: string, password: string): void {
