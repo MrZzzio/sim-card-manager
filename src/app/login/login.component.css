@@ -3,6 +3,11 @@
   margin-top: 10px;
 }
 
+.alert {
+  color: red;
+  margin-bottom: -18px;
+}
+
 button {
   margin-top: 20px;
   font-family: Arial;

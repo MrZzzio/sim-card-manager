@@ -11,6 +11,8 @@ import { User } from '../user';
 })
 export class LoginComponent implements OnInit {
 
+  loginFalse: boolean = false;
+
   constructor(private router: Router,
               private userService: UserService) { }
 
@@ -27,7 +29,12 @@ export class LoginComponent implements OnInit {
 
   login(login: string, password: string): void {
     this.userService.login({login, password} as User)
-    .subscribe(() => this.goMain());
+    .subscribe(() => {
+      this.loginFalse = false;
+      this.goMain();
+    },
+    error => this.loginFalse = true;
+  );
   }
 
 }
