@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler,
-  HttpRequest, HttpResponse } from '@angular/common/http';
-  import { Router } from '@angular/router';
+import {
+  HttpEvent, HttpInterceptor, HttpHandler,
+  HttpRequest, HttpResponse
+} from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 
@@ -18,18 +20,25 @@ export class LoginInterceptor implements HttpInterceptor {
       req = req.clone({
         headers: req.headers.set(localToken, token)
       });
-    } else {
+    } else if (!req.url.endsWith('/api/register')) {
       this.router.navigateByUrl('/api/login');
     }
     return next.handle(req).do(
       (event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse &&
-          event.status === 200 &&
-          event.url.endsWith('/api/login')) {
-          let token = event.headers.get(localToken);
-          if (token) {
-            localStorage.setItem(localToken, token);
+        if (event instanceof HttpResponse) {
+          if (event.status === 200) {
+            if (event.url.endsWith('/api/login')) {
+              let token = event.headers.get(localToken);
+              if (token) {
+                localStorage.setItem(localToken, token);
+              }
+            }
           }
+        }
+      },
+      error => {
+        if (error.status === 401) {
+          this.router.navigateByUrl('/api/login');
         }
       }
     );

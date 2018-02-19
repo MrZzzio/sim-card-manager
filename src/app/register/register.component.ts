@@ -32,10 +32,7 @@ export class RegisterComponent implements OnInit {
 
   checkRegister(login: string): void {
     this.userService.checkRegister(login)
-    .subscribe(res => {
-      this.uniqUser = res;
-      console.log(this.uniqUser);
-    });
+    .subscribe(res => this.uniqUser = res);
   }
 
   confirmPass(pass: string, conf: string): boolean {
