@@ -1,17 +1,25 @@
 <h2>Login or register</h2>
 
 <div>
-  <label class="label">Login:
-    <input #log />
+  <label class="label" for="input-login">Login:
   </label>
+
+  <div class="alert">
+    <input id="input-login" #log (keyup)= "checkRegister(log.value)"/>
+    <span *ngIf="!uniqUser">This login exists already!</span>
+  </div>
 
   <label class="label">Password:
     <input #password type="password" />
   </label>
 
-  <label class="label">Confirm:
-    <input type="password" />
+  <label class="label" for="confirm-pass">Confirm:
   </label>
+
+  <div class="alert">
+    <input #confirm id="confirm-pass" type="password" (keyup) = "confirmPass(password.value, confirm.value)" />
+    <span *ngIf="confirmPass(password.value, confirm.value)">Confirm password!</span>
+  </div>
 
   <button (click)="register(log.value, password.value)">Register</button>
 

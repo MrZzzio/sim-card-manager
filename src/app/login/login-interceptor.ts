@@ -16,8 +16,8 @@ export class LoginInterceptor implements HttpInterceptor {
     const token: string = localStorage.getItem(localToken);
     if (token) {
       req = req.clone({
-        headers: req.headers.set(localToken, token);
-      })
+        headers: req.headers.set(localToken, token)
+      });
     } else {
       this.router.navigateByUrl('/api/login');
     }

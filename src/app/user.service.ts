@@ -23,4 +23,9 @@ export class UserService {
     return this.http.post<User>(this.registerUrl, user);
   }
 
+  checkRegister(login: string): Observable<boolean> {
+    let options = {params: {login: login}};
+    return this.http.get<boolean>(this.registerUrl, options);
+  }
+
 }

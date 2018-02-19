@@ -83,6 +83,17 @@ public class Controller {
         }
     }
 
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void register(@RequestBody User user) {
+        this.userRepository.save(user);
+    }
+
+    @GetMapping("/register")
+    public Boolean checkRegister(@RequestParam (value = "login") String login) {
+        return this.userRepository.findByLogin(login) == null;
+    }
+
     private String generateSecureJwt() {
         return "jwt-token";
     }
