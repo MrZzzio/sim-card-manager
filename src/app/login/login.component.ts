@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       this.loginFalse = false;
       this.goMain();
     },
-    error => this.loginFalse = true;
+    error => this.loginFalse = true
   );
   }
 
