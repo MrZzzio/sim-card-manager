@@ -1,5 +1,5 @@
 <h1>{{ title }}</h1>
-<div>
+<div *ngIf="hasToken()">
   <nav>
     <a routerLink="/api/dashboard">Main</a>
     <a routerLink="/api/cards">Cards</a>
