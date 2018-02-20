@@ -5,8 +5,9 @@
   </label>
 
   <div class="alert">
-    <input id="input-login" #log (keyup)= "checkRegister(log.value)"/>
+    <input id="input-login" #log (keyup)= "checkRegister(log.value); validateLogin(log.value)"/>
     <span *ngIf="!uniqUser">This login exists already!</span>
+    <span *ngIf="checkLogin()" и поле не пустое>Login must be more than 3 characters</span>
   </div>
 
   <label class="label">Password:
@@ -18,10 +19,10 @@
 
   <div class="alert">
     <input #confirm id="confirm-pass" type="password" (keyup) = "confirmPass(password.value, confirm.value)" />
-    <span *ngIf="confirmPass(password.value, confirm.value)">Confirm password!</span>
+    <span *ngIf="!confirmPass(password.value, confirm.value)">Confirm password!</span>
   </div>
 
-  <button (click)="register(log.value, password.value)">Register</button>
+  <button [disabled]="password.value.length === 0 || !canRegister()" (click)="register(log.value, password.value)">Register</button>
 
   <button (click)="goLogin()">Cancel</button>
 </div>

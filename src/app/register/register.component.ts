@@ -11,7 +11,11 @@ import { User } from '../user';
 })
 export class RegisterComponent implements OnInit {
 
-  uniqUser: boolean = true;
+  private uniqUser: boolean = true;
+
+  private invalidLogin: boolean = true;
+
+  private samePass: boolean = true;
 
   constructor(private router: Router,
               private userService: UserService) { }
@@ -36,7 +40,20 @@ export class RegisterComponent implements OnInit {
   }
 
   confirmPass(pass: string, conf: string): boolean {
-    return pass !== conf;
+    this.samePass = pass === conf;
+    return this.samePass;
+  }
+
+  canRegister(): boolean {
+    return this.samePass && !this.invalidLogin;
+  }
+
+  checkLogin(): boolean {
+    return this.invalidLogin;
+  }
+
+  validateLogin(str: string): void {
+    str.length < 3 ? this.invalidLogin = true : this.invalidLogin = false;
   }
 
 }
