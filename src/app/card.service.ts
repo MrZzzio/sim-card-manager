@@ -20,10 +20,17 @@ export class CardService {
   constructor(private messageService: MessageService,
               private http: HttpClient) { }
 
-  getCards(): Observable<Card[]> {
-    return this.http.get<Card[]>(this.cardsUrl).pipe(
+  getCards(page: number): Observable<any> {
+    return this.http.get<any>(this.cardsUrl + '?page=' + page).pipe(
       tap(_ => this.log('fetching cards')),
       catchError(this.handleError('getCards', []))
+    );
+  }
+
+  getMax(): Observable<Card[]> {
+    return this.http.get<Card[]>(this.cardsUrl + '/max?balance,DESC').pipe(
+      tap(_ => this.log('fetching cards with max balance')),
+      catchError(this.handleError('getCards with max balance', []))
     );
   }
 

@@ -5,6 +5,10 @@ import com.artezio.simcardmanager.model.Card;
 import com.artezio.simcardmanager.model.User;
 import com.artezio.simcardmanager.repository.CardRepository;
 import com.artezio.simcardmanager.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,9 +43,21 @@ public class Controller {
     }
 
     @GetMapping("/cards")
-    public Iterable<Card> getAll(HttpServletRequest request) {
+    public Page<Card> getAll(HttpServletRequest request,
+                             @PageableDefault(size = 10) Pageable pageable) {
         if (this.checkRequestToken(request)){
-            Iterable<Card> all = this.cardRepository.findAll();
+            Page<Card> all = this.cardRepository.findAll(pageable);
+            return all;
+        } else {
+            throw new NotAuthorizedException();
+        }
+    }
+
+    @GetMapping("/cards/max")
+    public Iterable<Card> getMax(HttpServletRequest request,
+                                 @PageableDefault(direction = Sort.Direction.DESC)  Sort sort) {
+        if (this.checkRequestToken(request)) {
+            Iterable<Card> all = this.cardRepository.findAll(sort);
             return all;
         } else {
             throw new NotAuthorizedException();
