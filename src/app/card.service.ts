@@ -28,7 +28,7 @@ export class CardService {
   }
 
   getMax(): Observable<Card[]> {
-    return this.http.get<Card[]>(this.cardsUrl + '/max?balance,DESC').pipe(
+    return this.http.get<Card[]>(this.cardsUrl + '/max?sort=balance,DESC').pipe(
       tap(_ => this.log('fetching cards with max balance')),
       catchError(this.handleError('getCards with max balance', []))
     );
