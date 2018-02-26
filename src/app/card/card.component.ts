@@ -15,6 +15,8 @@ export class CardComponent implements OnInit {
   private cards: Card[];
 
   private pages: number[];
+  private currentPage: number;
+  private totalPages: number;
 
   constructor(private cardService: CardService,
               private route: ActivatedRoute) { }
@@ -38,23 +40,23 @@ export class CardComponent implements OnInit {
   }
 
   private getPages(cards: any): void {
-    let totalPages = cards.totalPages;
-    let currentPage = cards.number + 1;
+    this.totalPages = cards.totalPages;
+    this.currentPage = cards.number + 1;
     let pageSize = cards.numberOfElements;
     let startPage: number, endPage: number;
-    if (totalPages <= 10) {
+    if (this.totalPages <= 10) {
       startPage = 1;
-      endPage = totalPages;
+      endPage = this.totalPages;
     } else {
-      if (currentPage <= 6) {
+      if (this.currentPage <= 6) {
         startPage = 1;
         endPage = 10;
-      } else if (currentPage + 5 >= totalPages) {
-        startPage = totalPages - 9;
-        endPage = totalPages;
+      } else if (this.currentPage + 5 >= this.totalPages) {
+        startPage = this.totalPages - 9;
+        endPage = this.totalPages;
       } else {
-        startPage = currentPage - 5;
-        endPage = currentPage + 4;
+        startPage = this.currentPage - 5;
+        endPage = this.currentPage + 4;
       }
     }
     this.pages = _.range(startPage, endPage + 1);

@@ -19,10 +19,22 @@
   <a routerLink="/api/new">add</a>
 </nav>
 
-<div>
-  <ul>
-    <li *ngFor="let page of pages">
-      <span>{{page}}</span>
+<div style="text-align:center; margin-top:10px; padding-top:20px; border-top: 1px solid">
+  <ul class="but">
+    <li class="but">
+      <a href="/api/cards?page=1"><<</a>
+    </li>
+    <li class="but">
+      <a href="/api/cards?page={{currentPage - 1}}"><</a>
+    </li>
+    <li class="but" *ngFor="let page of pages">
+      <a href="/api/cards?page={{page}}">{{page}}</a>
+    </li>
+    <li class="but">
+      <a href="/api/cards?page={{currentPage + 1}}">></a>
+    </li>
+    <li class="but">
+      <a href="/api/cards?page={{totalPages}}">>></a>
     </li>
   </ul>
 </div>
