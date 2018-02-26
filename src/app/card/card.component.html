@@ -21,19 +21,19 @@
 
 <div style="text-align:center; margin-top:10px; padding-top:20px; border-top: 1px solid">
   <ul class="but">
-    <li class="but">
+    <li [ngClass]="{disabled:currentPage === 1}" class="but">
       <a href="/api/cards?page=1"><<</a>
     </li>
-    <li class="but">
+    <li [ngClass]="{disabled:currentPage === 1}" class="but">
       <a href="/api/cards?page={{currentPage - 1}}"><</a>
     </li>
-    <li class="but" *ngFor="let page of pages">
+    <li class="but" *ngFor="let page of pages" [ngClass]="{active: currentPage === page}">
       <a href="/api/cards?page={{page}}">{{page}}</a>
     </li>
-    <li class="but">
+    <li [ngClass]="{disabled:currentPage === totalPages}" class="but">
       <a href="/api/cards?page={{currentPage + 1}}">></a>
     </li>
-    <li class="but">
+    <li [ngClass]="{disabled:currentPage === totalPages}" class="but">
       <a href="/api/cards?page={{totalPages}}">>></a>
     </li>
   </ul>

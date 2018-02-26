@@ -82,6 +82,7 @@ button.delete {
   display: inline;
   -webkit-padding-start: 0px;
 }
+
 .but a {
   padding: 5px 10px;
   text-decoration: none;
@@ -89,13 +90,25 @@ button.delete {
   background-color: #eee;
   border-radius: 4px;
 }
+
 .but a:visited, a:link {
   color: #607D8B;
 }
+
 .but a:hover {
   color: #039be5;
   background-color: #CFD8DC;
 }
+
 .but a.active {
   color: #039be5;
+}
+
+.active a {
+  background-color: #afb3b5;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
 }

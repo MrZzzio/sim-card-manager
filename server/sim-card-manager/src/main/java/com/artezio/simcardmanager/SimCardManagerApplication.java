@@ -33,7 +33,7 @@ public class SimCardManagerApplication {
 	}
 
 	private void generateCards() {
-		int count = 43;
+		int count = 124;
         IntStream.range(0, count)
                 .forEach(i -> {
                     Card card = this.createCard();
