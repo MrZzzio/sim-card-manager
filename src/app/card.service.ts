@@ -15,7 +15,7 @@ const httpOptions = {
 @Injectable()
 export class CardService {
 
-  private cardsUrl = "http://localhost:8081/api/cards";
+  cardsUrl = "http://localhost:8081/api/cards";
 
   constructor(private messageService: MessageService,
               private http: HttpClient) { }
