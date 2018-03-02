@@ -16,6 +16,7 @@ const httpOptions = {
 export class CardService {
 
   cardsUrl = "http://localhost:8081/api/cards";
+  dashboardTitle: string;
 
   constructor(private messageService: MessageService,
               private http: HttpClient) { }
@@ -27,11 +28,54 @@ export class CardService {
     );
   }
 
-  getMax(): Observable<Card[]> {
-    return this.http.get<Card[]>(this.cardsUrl + '/max?sort=balance,DESC').pipe(
+  getMax(sort: string): Observable<Card[]> {
+    let howToSort = this.getSortMethod(sort);
+    return this.http.get<Card[]>(this.cardsUrl + '/max?sort=' + howToSort).pipe(
       tap(_ => this.log('fetching cards with max balance')),
       catchError(this.handleError('getCards with max balance', []))
     );
+  }
+
+  getDashboardTitle(): string {
+    return this.dashboardTitle;
+  }
+
+  private getSortMethod(sort: string): string {
+    let result: string;
+    switch (sort) {
+      case 'Sort by balance max to min': {
+        result = 'balance,DESC';
+        this.dashboardTitle = 'with largest balance';
+      }
+      break;
+      case 'Sort by balance min to max': {
+        result = 'balance,ASC';
+        this.dashboardTitle = 'with minimum balance';
+      }
+      break;
+      case 'Sort by phone number 0-9': {
+        result = 'number,ASC';
+        this.dashboardTitle = 'sorted by phone number';
+      }
+      break;
+      case 'Sort by phone number 9-0': {
+        result = 'number,DESC';
+        this.dashboardTitle = 'phone number reverse sort';
+      }
+      break;
+      case 'Sort by operator name A-Z': {
+        result = 'operator,ASC';
+        this.dashboardTitle = 'sorted by operator\'s name';
+      }
+      break;
+      case 'Sort by operator name Z-A': {
+        result = 'operator,DESC';
+        this.dashboardTitle = 'operator\'s name revers sort';
+      }
+      break;
+      default: result = 'balance,DESC';
+    }
+    return result;
   }
 
   getCard(id: number): Observable<Card> {

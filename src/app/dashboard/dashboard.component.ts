@@ -9,18 +9,29 @@ import { CardService } from '../card.service';
 })
 export class DashboardComponent implements OnInit {
   cards: Card[] = [];
+  sortBy = ['Sort by balance max to min',
+            'Sort by balance min to max',
+            'Sort by phone number 0-9',
+            'Sort by phone number 9-0',
+            'Sort by operator name A-Z',
+            'Sort by operator name Z-A'];
+  selectedSortBy = this.sortBy[0]; 
 
   constructor(private cardService: CardService) { }
 
   ngOnInit() {
-    this.getCards();
+    this.getCards(this.selectedSortBy);
   }
 
-  getCards(): void {
-    this.cardService.getMax()
+  getCards(sort: string): void {
+    this.cardService.getMax(sort)
       .subscribe(cards => {
         this.cards = cards.slice(0, 5);
       }
     );
+  }
+
+  getTitle(): string {
+    return this.cardService.getDashboardTitle();
   }
 }
