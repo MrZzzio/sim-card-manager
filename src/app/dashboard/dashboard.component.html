@@ -6,7 +6,7 @@
 
 <div class="grid grid-pad">
   <a *ngFor="let card of cards" class="col-1-4" routerLink="/api/cards/{{card.id}}">
-    <div class="module card">
+    <div title={{card.operator}} class="module card">
       <h4>{{card.number}}</h4>
       balance: {{card.balance}}
     </div>
